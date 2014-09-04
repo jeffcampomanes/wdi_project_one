@@ -1,2 +1,5 @@
 require 'active_record'
-require './lib/connection.rb'
+require_relative '../lib/connection.rb'
+
+class Snippet < ActiveRecord::Base
+end

@@ -1,3 +1,5 @@
 require 'active_record'
-require './lib/connection.rb'
+require_relative '../lib/connection.rb'
 
+class Author < ActiveRecord::Base
+end

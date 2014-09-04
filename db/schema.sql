@@ -8,19 +8,19 @@ post_date date,
 post text
 );
 
-CREATE TABLE author(
+CREATE TABLE authors(
 id serial primary key,
 username varchar (255),
 email varchar(255)
 );
 
-CREATE TABLE snippet(
+CREATE TABLE snippets(
 id serial primary key,
 post_id integer,
 snippet_url varchar(255)
 );
 
-CREATE TABLE tag(
+CREATE TABLE tags(
 id serial primary key,
 post_id integer,
 tag varchar(255)
