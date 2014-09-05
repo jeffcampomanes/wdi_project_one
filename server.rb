@@ -3,7 +3,6 @@ require 'sinatra'
 require 'sinatra/reloader'
 require 'httparty'
 require 'active_record'
-
 require './lib/connection.rb'
 require './model/author.rb'
 require './model/post.rb'
@@ -48,11 +47,10 @@ get ("/authors/add") do
 	erb(:authors_add, {locals: {authors: Author.all()} })
 end
 
-#not working#
 get("/authors/:id") do 
-	# author = Author.find_by("id", params["id"])
+	author = Author.find_by("id", params["id"])
 	# post = Post.select_by("author_id", author["id"])
-	# erb(:author, {locals: {author: author, posts: post} })
+	erb(:author, {locals: {author: author, posts: post} })
 end
 
 ############################################################

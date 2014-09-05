@@ -21,12 +21,11 @@
 
 	<select name="author_id">
     	<% authors.each do |x| %>
-        <option value="<%= x["id"] %>"><%= x["title"] %> <%= x["post_date"]%> <%= x["post"] %> <%= x["created_at"] %>
+        <option value="<%= x["id"] %>"><%= x["username"] %>
         </option>
       	<% end %>
     </select>	
 
-	
     <button> Post </button>	
 	</form>
 
