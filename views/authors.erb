@@ -7,6 +7,15 @@
 </head>
 	<a href="/authors/add"> Click here to become an author! </a>
 
+
+	<% authors.each do |x| %>
+	<ul>
+		<li>
+			<a href="/authors/<%= x["id"] %>"> <%= x["username"] %> </a>
+		</li>
+	</ul>
+		<% end %>
+		
 <body>
 </body>
 </html>

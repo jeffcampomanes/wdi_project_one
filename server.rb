@@ -27,21 +27,27 @@ end
 ############################################################
 #AUTHORS
 
-# view authors sign up page
-get("/authors") do
-	erb(:authors_add, {locals: {authors: Author.all()} })	
-end
-
-#add contributing author
-post ("/authors/add") do
-	author_hash = {username: params["username"], email: params["email"]}
+#add authors to server
+post('/authors') do
+	author_hash = {
+		username: params["username"], 
+		email: params["email"]
+	}
 	a = Author.new(author_hash)
 	a.save
-
-erb(:authors)
+	erb(:authors, {locals: {authors: Author.all()} })
 end
 
-#view specific author with id
+#view authors on viewing page with list of authors
+get("/authors") do
+	erb(:authors, {locals: {authors: Author.all()} })	
+end
+
+#adding authors via form
+get ("/authors/add") do
+	erb(:authors_add, {locals: {authors: Author.all()} })
+end
+
 get("/authors/:id") do
 
 end
@@ -49,22 +55,30 @@ end
 ############################################################
 #POSTS
 
-#view posts
-get("/posts") do
-	erb(:posts)
+#adding posts to server
+post("/posts") do 
+	post_hash = {
+		title: params["title"],
+		post_date: params["post_date"],
+		post: params["post"]
+	}
+	p = Post.new(post_hash)
+	p.save
+	erb(:posts, {locals: {posts: Post.all()} })
 end
 
-#add post
+#view posts on viewing page with list of posts
+get("/posts") do
+	erb(:posts, {locals: {posts: Post.all()} })
+end
+
+#add post content via form
 get("/posts/add") do
 	erb(:posts_add)
 end
 
 #view specific post with id
 get("/posts/:name/:id") do
-
-end
-
-post("/posts") do
 end
 
 ############################################################

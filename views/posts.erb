@@ -7,6 +7,16 @@
 	<a href="/posts/add"> Click to write a new post </a>
 </head>
 <body>
-	<p> view all listed posts here </p>
+
+	<% posts.each do |x| %>
+	<ul>
+		<li>
+			<a href="/authors/<%= x["id"] %>"> <%= x["title"] %> </a>
+		</li>
+	</ul>
+		<% end %>
+
+
+
 </body>
 </html>

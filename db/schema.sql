@@ -4,6 +4,7 @@ CREATE TABLE posts(
 id serial primary key,
 author_id integer,
 tag_id integer,
+title varchar(255),
 post_date date,
 post text
 );
