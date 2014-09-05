@@ -14,7 +14,7 @@
 	<% posts.each do |x| %>
 	<ul>
 		<li>
-			<a href="/posts/<%= x["id"] %>"> <%= x["title"] %> </a>
+			<a href="/posts/<%= x["id"] %>"> <%= x["title"] %> <%= x["post_date"] %> </a>
 		</li>
 	</ul>
 		<% end %>
