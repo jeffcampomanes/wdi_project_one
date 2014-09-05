@@ -2,8 +2,10 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Posts</title>
-	<h2> add posts page </h2>
+	<title>NYK, ALL DAY.</title>
+	<h2> Express yo'self!</h2>
+	<a href="/"> Home Page </a>
+
 </head>
 <body>
 	
@@ -16,6 +18,14 @@
 		<br>
 		<textarea name="post" cols="50" rows="5" placeholder="Write here!"></textarea>
 		<br>
+
+	<select name="author_id">
+    	<% authors.each do |x| %>
+        <option value="<%= x["id"] %>"><%= x["title"] %> <%= x["post_date"]%> <%= x["post"] %> <%= x["created_at"] %>
+        </option>
+      	<% end %>
+    </select>	
+
 	
     <button> Post </button>	
 	</form>

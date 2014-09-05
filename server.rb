@@ -48,8 +48,11 @@ get ("/authors/add") do
 	erb(:authors_add, {locals: {authors: Author.all()} })
 end
 
-get("/authors/:id") do
-
+#not working#
+get("/authors/:id") do 
+	# author = Author.find_by("id", params["id"])
+	# post = Post.select_by("author_id", author["id"])
+	# erb(:author, {locals: {author: author, posts: post} })
 end
 
 ############################################################
@@ -74,11 +77,13 @@ end
 
 #add post content via form
 get("/posts/add") do
-	erb(:posts_add)
+	erb(:posts_add, {locals: {authors: Author.all() } })
 end
 
 #view specific post with id
-get("/posts/:name/:id") do
+get("/posts/:id") do
+	# post = Post.find_by("id", params[:id])
+	# author = Author.find_by("id", post["author_id"])
 end
 
 ############################################################
