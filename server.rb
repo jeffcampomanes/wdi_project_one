@@ -28,6 +28,7 @@ end
 
 #add authors to server
 post('/authors') do
+
 	author_hash = {
 		username: params["username"], 
 		email: params["email"]
@@ -43,7 +44,7 @@ get("/authors") do
 end
 
 #adding authors via form
-get ("/authors/add") do
+get("/authors/add") do
 	erb(:authors_add, {locals: {authors: Author.all()} })
 end
 
@@ -53,7 +54,6 @@ get("/authors/:id") do
 	post = Post.find_by({id: params[:id]})
 	erb(:author, {locals: {author: author, posts: post} })
 end
-
 ############################################################
 #POSTS
 
@@ -62,7 +62,9 @@ post("/posts") do
 	post_hash = {
 		title: params["title"],
 		post_date: params["post_date"],
-		post: params["post"]
+		post: params["post"],
+		author_id: params["author_id"],
+		tag_id: params["tag_id"],
 	}
 	p = Post.new(post_hash)
 	p.save
@@ -81,21 +83,22 @@ end
 
 #view specific post with id
 get("/posts/:id") do
-	post = Post.find_by({id: params[:id]})
-	author = Author.find_by({id: params[:id]})
-	erb(:post, {locals: {post: post, author: author} })
 
+	post = Post.find_by({id: params[:id]})
+	author = Author.find_by({id: post.author_id})
+	erb(:post, {locals: {post: post, author: author} })
 end
 
 ############################################################
 #TAG
 
 #view search tag page
-get("/tag") do
- 
+get("/tags") do
+	# erb(:tags)
+ 	erb(:tags, {locals: {tags: Tag.all()} })
 end
 
-get("/tag/:id") do
+get("/tags/:id") do
 
 end
 

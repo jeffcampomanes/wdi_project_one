@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Tags</title>
+	<h2> Search posts by tags: </h2>
+</head>
+<body>
+
+<ul>
+	<%tags.each do |x|%>
+		<li> 
+			<a href='/tags/<%=x['id']%>'><%=x['tag']%> </a> 
+		</li>
+			<%end%>
+		</ul>
+
+</body>
+</html>
