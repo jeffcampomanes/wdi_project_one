@@ -1,16 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<header>
 	<meta charset="UTF-8">
 	<title>NYK, ALL DAY.</title>
-	<h2> Posts </h2>
-	<a href="/posts/add"> Click to write a new post </a>
+
+	<h1> NY ALL DAY, EVERYDAY.</h1>
+	<p>giving you all the Knicks news and updates you want.</p>
+	<link rel="stylesheet" href="/style.css">
+
+	<ul>
+		<li> <a href="/authors"> Authors</a> </li>
+		<li> <a href="/posts"> Posts </a> </li>
+		<li> <a href="/tags"> Search by tag</a> </li>
+	</ul>
+
+	<h3> Posts: </h3>
+		<a href="/posts/add"> Click to write a new post </a>
 	<br>
-	<a href="/"> Home Page </a>
+		<a href="/"> Home Page </a>
+</header>
 
-</head>
 <body>
-
 	<% posts.each do |x| %>
 	<ul>
 		<li>
@@ -18,8 +28,5 @@
 		</li>
 	</ul>
 		<% end %>
-
-
-
 </body>
 </html>

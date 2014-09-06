@@ -83,7 +83,6 @@ end
 
 #view specific post with id
 get("/posts/:id") do
-
 	post = Post.find_by({id: params[:id]})
 	author = Author.find_by({id: post.author_id})
 	erb(:post, {locals: {post: post, author: author} })
@@ -92,16 +91,16 @@ end
 ############################################################
 #TAG
 
-#view search tag page
-get("/tags") do
-	# erb(:tags)
- 	erb(:tags, {locals: {tags: Tag.all()} })
+
+get '/tags' do 
+  list_tags = Tag.all()
+  erb(:tags, {locals: {list_tags: list_tags}})
 end
 
-get("/tags/:id") do
-
+get '/tags/:id' do 
+  this_tag = Tag.find_by({id: params[:id]}) 
+  list_posts = Post.all()
+  list_authors = Author.all()
+  erb(:tag, {locals: {this_tag: this_tag, list_posts: list_posts, list_authors: list_authors}})
 end
-
-
-
 

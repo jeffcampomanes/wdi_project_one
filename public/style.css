@@ -1,0 +1,45 @@
+header {
+	text-align: center;
+	background: url('http://nbawallpapers10.net/wp-content/uploads/images/fd/new-york-knicks.png');
+    background-size: 90%;
+    background-position: center; 
+    color: white;
+}
+h1 {
+	font-size: 70px;
+	text-align: center;
+	color: white;
+}
+h3 {
+	color: white;
+	text-align: center;
+}
+h4 {
+	color: white;
+	text-align: center;
+}
+p {
+	text-align: center;
+	color: white;
+}
+li {
+    display: inline;
+    padding: 5px;
+}
+a {
+	text-align: center;
+	color: white;
+}
+ul {
+	padding: 10px;
+	background-color: orange;
+}
+body {
+  font-family: helvetica, sans-serif;
+  margin: 0 auto;
+  max-width: 650px;
+  background-color: black;
+}
+form {
+	text-align: center;
+}
