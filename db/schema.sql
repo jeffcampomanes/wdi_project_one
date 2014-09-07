@@ -3,10 +3,10 @@ CREATE DATABASE blog;
 CREATE TABLE posts(
 id serial primary key,
 author_id integer,
-tag_id integer,
 title varchar(255),
 post_date date,
-post text
+post text,
+tag varchar(255)
 );
 
 CREATE TABLE authors(

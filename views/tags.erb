@@ -19,20 +19,12 @@
 </header>
 
 <body>
-	<form action="/tags" method="POST">
-		<br>
-		<textarea name="tag" cols="20" rows="1" placeholder="Search for blogs via tags!"></textarea>
-		<br>	
-   		<button> Search </button>	
-	</form>
-
-	<% tag.each do |x| %>
+	<% posts.each do |x| %>
 	<ul>
-	<li>
-		<a href="/tag/<%= x["tag"] %>"> </a>
-	</li>
+		<li>
+			<a href="/posts/<%= x["id"] %>"> <b> TAGS: </b> <i> <%= x["tag"] %> </i> </a>
+		</li>
 	</ul>
-	<%end%>
-
+		<% end %>
 </body>
 </html>

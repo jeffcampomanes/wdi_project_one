@@ -30,7 +30,6 @@
 		<br>
 		<textarea name="post" cols="50" rows="5" placeholder="Write here!"></textarea>
 		<br>
-	
 		
 	<select name="author_id">
     	<% authors.each do |x| %>
@@ -41,5 +40,12 @@
 
     <button> Post </button>	
 	</form>
+	
+	<div class="add_button">
+		<a href="/authors/add">
+		<button> Add a new author </button>
+		</a>
+	</div>
+
 </body>
 </html>

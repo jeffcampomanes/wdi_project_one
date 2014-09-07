@@ -99,29 +99,24 @@ end
 ############################################################
 #TAG
 
-## tags will show in inspector but won't show on page. they are added to database. when searching for tag, it will be added to database instead of searched upon. ##
 post("/tags") do
-	tags_hash = {
-		tag: params["tag"]
-	} 
-	Tag.create(tags_hash)
-
-	erb(:tags, { locals: { tag: Tag.all() } })
+	
+	erb(:tags, { locals: { tag: Tag.all(), posts: Post.all() } })
 end
 
 get("/tags") do
-	erb(:tags, { locals: { tag: Tag.all() } })
+	erb(:tags, { locals: { tag: Tag.all(), posts: Post.all() } })
 end
 
 get("/tags/:id/posts") do
 	tag = Tag.find_by("id", params[:id])
 
-	erb(:tags, { locals: { tag: tag } })
+	erb(:tags, { locals: { tag: tag, posts: Post.all() } })
 end
 ############################################################
 # TWILIO MESSAGING
 
-account_sid = 'AC162b4ab94b6b6e6022465ae7bc35785e'
+# account_sid = 'AC162b4ab94b6b6e6022465ae7bc35785e'
 # auth_token = 'c7a0e35f4bd45b8ff1aa3e400c368493'
 
 # # set up a client to talk to the Twilio REST API
