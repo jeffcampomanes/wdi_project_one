@@ -14,13 +14,11 @@
 		<li> <a href="/tags"> Search by tag</a> </li>
 	</ul>
 
-	<h3> Posts: </h3>
 </header>
 
 <body>
-	<h4> Written by: <%= author["username"] %> </h4>
-	<h4> Title: <%=post["title"]%> </h4>
-	<h4> Date: <%=post["post_date"]%> </h4>
-	<p> <%=post["post"]%> </p>
+	<h3> <%=post["title"]%> </h3>
+	<p>  By: <%= author["username"] %> || Posted on <%=post["post_date"]%> </p>
+	<p> <%=post["post"]%> </p>	
 </body>
 </html>

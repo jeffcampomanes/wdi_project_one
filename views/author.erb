@@ -14,7 +14,7 @@
 		<li> <a href="/tags"> Search by tag</a> </li>
 	</ul>
 
-	<h3> Authors: </h3>
+	<h3> Author: </h3>
 	<br>
 	<a href="/"> Home Page </a>
 </header>
@@ -24,7 +24,17 @@
 		<li><p> Name: <%=author["username"]%> </p></li>
 		<li><p> Email: <%=author["email"]%> </p></li>
 	</ul>
-<p> Other works written by <%=author["username"]%>: </p>
+	
+	<p> Other works written by <%=author["username"]%>: </p>
+
+	<% posts.each do |x| %>
+	<ul>
+	<li>
+		<a href="/posts/<%= x["id"] %>"><%= x["title"]%> </a>
+	</li>
+	</ul>
+
+		<% end %>
 
 </body>
 </html>

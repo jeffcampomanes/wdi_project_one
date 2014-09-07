@@ -3,6 +3,7 @@ header {
 	background: url('http://nbawallpapers10.net/wp-content/uploads/images/fd/new-york-knicks.png');
     background-size: 90%;
     background-position: center; 
+    background-repat: none;
     color: white;
 }
 h1 {

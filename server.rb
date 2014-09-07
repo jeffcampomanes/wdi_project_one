@@ -8,7 +8,8 @@ require './model/author.rb'
 require './model/post.rb'
 require './model/snippet.rb'
 require './model/tag.rb'
-
+require 'rubygems' 
+require 'twilio-ruby'
 ############################################################
 #ACTIVE RECORD
 
@@ -52,8 +53,9 @@ end
 get("/authors/:id") do 
 	author = Author.find_by({id: params[:id]})
 	post = Post.find_by({id: params[:id]})
-	erb(:author, {locals: {author: author, posts: post} })
+	erb(:author, {locals: {author: author, posts: Post.all()} })
 end
+
 ############################################################
 #POSTS
 
@@ -64,7 +66,7 @@ post("/posts") do
 		post_date: params["post_date"],
 		post: params["post"],
 		author_id: params["author_id"],
-		tag_id: params["tag_id"],
+		tag: params["tag"],
 	}
 	p = Post.new(post_hash)
 	p.save
@@ -91,7 +93,6 @@ end
 ############################################################
 #TAG
 
-
 get '/tags' do 
   list_tags = Tag.all()
   erb(:tags, {locals: {list_tags: list_tags}})
@@ -103,4 +104,17 @@ get '/tags/:id' do
   list_authors = Author.all()
   erb(:tag, {locals: {this_tag: this_tag, list_posts: list_posts, list_authors: list_authors}})
 end
+############################################################
+#TWILIO MESSAGING
+
+account_sid = 'AC162b4ab94b6b6e6022465ae7bc35785e'
+auth_token = 'c7a0e35f4bd45b8ff1aa3e400c368493'
+
+# set up a client to talk to the Twilio REST API
+@client = Twilio::REST::Client.new account_sid, auth_token
+
+@client.account.messages.create(
+	:from => '+19732334163', 
+	:to => '+18625967865', 
+	:body => 'Hey there!')
 
