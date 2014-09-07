@@ -2,29 +2,31 @@
 <html lang="en">
 <header>
 	<meta charset="UTF-8">
-	<title>NYK, ALL DAY.</title>
+	<title>#threetothdome</title>
 
 	<h1> NY ALL DAY, EVERYDAY.</h1>
-	<p>giving you all the Knicks news and updates you want.</p>
 	<link rel="stylesheet" href="/style.css">
+	<link href='http://fonts.googleapis.com/css?family=Cinzel:700' rel='stylesheet' type='text/css'>
+
 
 	<ul>
 		<li> <a href="/authors"> Authors</a> </li>
 		<li> <a href="/posts"> Posts </a> </li>
 		<li> <a href="/tags"> Search by tag</a> </li>
+		<li> <a href="/"> Home Page </a> </li>
+
 	</ul>
 
-	<h3> Posts: </h3>
-		<a href="/posts/add"> Click to write a new post </a>
+	<u> <a href="/posts/add"> Click to write a new post </a> </u>
 	<br>
-		<a href="/"> Home Page </a>
+	<h3> Posts: </h3>
 </header>
 
 <body>
 	<% posts.each do |x| %>
 	<ul>
 		<li>
-			<a href="/posts/<%= x["id"] %>"><%= x["title"] %> <br> <%= x["post_date"] %> </a>
+			<a href="/posts/<%= x["id"] %>"> "<%= x["title"] %>" <br> Posted on: <%= x["post_date"] %> </a>
 		</li>
 	</ul>
 		<% end %>

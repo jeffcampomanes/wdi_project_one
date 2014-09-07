@@ -2,28 +2,24 @@
 <html lang="en">
 <header>
 	<meta charset="UTF-8">
-	<title>NYK, ALL DAY.</title>
+	<title>#threetothdome</title>
 
 	<h1> NY ALL DAY, EVERYDAY.</h1>
-	<p>giving you all the Knicks news and updates you want.</p>
 	<link rel="stylesheet" href="/style.css">
-	
+	<link href='http://fonts.googleapis.com/css?family=Cinzel:700' rel='stylesheet' type='text/css'>
+
 	<ul>
 		<li> <a href="/authors"> Authors</a> </li>
 		<li> <a href="/posts"> Posts </a> </li>
 		<li> <a href="/tags"> Search by tag</a> </li>
+		<li> <a href="/"> Home Page </a> </li>
 	</ul>
 
-	<h3> Author: </h3>
-	<br>
-	<a href="/"> Home Page </a>
 </header>
 
 <body>
-	<ul>
-		<li><p> Name: <%=author["username"]%> </p></li>
-		<li><p> Email: <%=author["email"]%> </p></li>
-	</ul>
+	
+	<p> Name: <%=author["username"]%> || Email: <%=author["email"]%> </p>
 	
 	<p> Other works written by <%=author["username"]%>: </p>
 
@@ -31,6 +27,7 @@
 	<ul>
 	<li>
 		<a href="/posts/<%= x["id"] %>"><%= x["title"]%> </a>
+		
 	</li>
 	</ul>
 

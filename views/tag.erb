@@ -2,42 +2,25 @@
 <html lang="en">
 <header>
 	<meta charset="UTF-8">
-	<title>Posts by tags</title>
+	<title>#threetothdome</title>
 
 	<h1> NY ALL DAY, EVERYDAY.</h1>
 
 	<link rel="stylesheet" href="/style.css">
-	<h3> Tags</h3>
+	<link href='http://fonts.googleapis.com/css?family=Cinzel:700' rel='stylesheet' type='text/css'>
 
+
+	<ul>
+		<li> <a href="/authors"> Authors</a> </li>
+		<li> <a href="/posts"> Posts </a> </li>
+		<li> <a href="/tags"> Search by tag</a> </li>
+		<li> <a href="/"> Home Page </a> </li>
+	</ul>
+
+	<h3> Tags</h3>
 </header>
+
 <body>
 
-	<h3> Posts with the tag: <%=this_tag["tag"]%> </h3>
-		<ul>
-			<%list_posts.where({tag_id: this_tag['id']}).each do |post|%>
-				<li>
-					<!-- show author -->
-					<a href='/authors/<%=post['author_id']%>'><%=list_authors.find_by({id: post['author_id']})['username']%></a>
-					<!-- show post -->
-					<div class="post"><a href='/posts/<%=post['id']%>'><%=post['post']%></a></div>
-					<!-- show time -->
-					<%=post['post_time']%>
-				</li>
-			<%end%>
-		</ul>
-
-
-			<form action="/tags/<%=this_tag[:id]%>/edit" method=POST>
-				<input type="hidden" name="_method" value="PUT">
-				<input type="text" name="tag_update" placeholder="New tag name">
-				<button>Edit Tag</button>
-			</form>
-
-			<form action="/tags/<%=this_tag[:id]%>/delete" method=POST>
-				<input type="hidden" name="_method" value="delete">
-				<button>Delete Tag (and all associated posts)</button>
-			</form>
-	
-	
 </body>
 </html>

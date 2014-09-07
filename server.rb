@@ -91,30 +91,45 @@ get("/posts/:id") do
 end
 
 ############################################################
-#TAG
+#FEED (see all posts)
 
-get '/tags' do 
-  list_tags = Tag.all()
-  erb(:tags, {locals: {list_tags: list_tags}})
-end
-
-get '/tags/:id' do 
-  this_tag = Tag.find_by({id: params[:id]}) 
-  list_posts = Post.all()
-  list_authors = Author.all()
-  erb(:tag, {locals: {this_tag: this_tag, list_posts: list_posts, list_authors: list_authors}})
+get("/feed") do
+	erb(:feed, {locals: {posts: Post.all()} })
 end
 ############################################################
-#TWILIO MESSAGING
+#TAG
+
+## tags will show in inspector but won't show on page. they are added to database. when searching for tag, it will be added to database instead of searched upon. ##
+post("/tags") do
+	tags_hash = {
+		tag: params["tag"]
+	} 
+	Tag.create(tags_hash)
+
+	erb(:tags, { locals: { tag: Tag.all() } })
+end
+
+get("/tags") do
+	erb(:tags, { locals: { tag: Tag.all() } })
+end
+
+get("/tags/:id/posts") do
+	tag = Tag.find_by("id", params[:id])
+
+	erb(:tags, { locals: { tag: tag } })
+end
+############################################################
+# TWILIO MESSAGING
 
 account_sid = 'AC162b4ab94b6b6e6022465ae7bc35785e'
-auth_token = 'c7a0e35f4bd45b8ff1aa3e400c368493'
+# auth_token = 'c7a0e35f4bd45b8ff1aa3e400c368493'
 
-# set up a client to talk to the Twilio REST API
-@client = Twilio::REST::Client.new account_sid, auth_token
+# # set up a client to talk to the Twilio REST API
+# @client = Twilio::REST::Client.new account_sid, auth_token
 
-@client.account.messages.create(
-	:from => '+19732334163', 
-	:to => '+18625967865', 
-	:body => 'Hey there!')
+# @client.account.messages.create(
+# 	:from => '+19732334163', 
+# 	:to => '+18625967865', 
+# 	:body => 'Hey there!'
+# 	)
 

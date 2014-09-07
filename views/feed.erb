@@ -5,34 +5,28 @@
 	<title>#threetothdome</title>
 
 	<h1> NY ALL DAY, EVERYDAY.</h1>
-
 	<link rel="stylesheet" href="/style.css">
 	<link href='http://fonts.googleapis.com/css?family=Cinzel:700' rel='stylesheet' type='text/css'>
+
 
 	<ul>
 		<li> <a href="/authors"> Authors</a> </li>
 		<li> <a href="/posts"> Posts </a> </li>
 		<li> <a href="/tags"> Search by tag</a> </li>
 		<li> <a href="/"> Home Page </a> </li>
+
 	</ul>
-	<h3> Search posts by tags: </h3>
+	<br>
+	<h3> Post Feed: </h3>
 </header>
 
 <body>
-	<form action="/tags" method="POST">
-		<br>
-		<textarea name="tag" cols="20" rows="1" placeholder="Search for blogs via tags!"></textarea>
-		<br>	
-   		<button> Search </button>	
-	</form>
-
-	<% tag.each do |x| %>
+	<% posts.each do |x| %>
 	<ul>
-	<li>
-		<a href="/tag/<%= x["tag"] %>"> </a>
-	</li>
+		<li>
+			<a href="/posts/<%= x["id"] %>"> "<%= x["title"] %>" <br> Posted on: <%= x["post_date"] %> </a>
+		</li>
 	</ul>
-	<%end%>
-
+		<% end %>
 </body>
 </html>
