@@ -28,10 +28,18 @@ post_id integer,
 tag varchar(255)
 );
 
-CREATE TABLE subscribes(
+-- CREATE TABLE subscribes(
+-- id serial primary key,
+-- first_name varchar(255),
+-- last_name varchar(255),
+-- email varchar(255),
+-- phone_number integer
+-- );
+
+CREATE TABLE subscribers (
 id serial primary key,
-first_name varchar(255),
-last_name varchar(255),
+name varchar(255),
 email varchar(255),
-phone_number integer
+phone_number varchar(255),
+author_id integer
 );

@@ -8,7 +8,7 @@ require './model/author.rb'
 require './model/post.rb'
 require './model/snippet.rb'
 require './model/tag.rb'
-require './model/subscribe.rb'
+# require './model/subscriber.rb'
 require 'rubygems' 
 require 'twilio-ruby'
 ############################################################
@@ -54,15 +54,13 @@ end
 get("/authors/:id") do 
 	author = Author.find_by({id: params[:id]})
 	post = Post.where({author_id: params[:id]})
-	# tag = Tag.find_by({id: post.tag_id})
-	erb(:author, {locals: {author: author, posts: Post.all(), tags: Tag.all()} })
+	erb(:author, {locals: {author: author, posts: post, tags: Tag.all()} })
 end
 
 ############################################################
 #POSTS
 
 #adding posts to server
-
 post("/posts") do 
 	post_hash = {
 		title: params["title"],
@@ -74,6 +72,11 @@ post("/posts") do
 	}
 	p = Post.new(post_hash)
 	p.save
+
+# SendGrid info here
+		subscribers = Subscriber.all()
+		title = posts_hash[:title]  
+		subscribe(subscribers, title)
 	erb(:posts, {locals: {posts: Post.all()} })
 end
 
@@ -84,21 +87,9 @@ end
 
 #add post content via form
 get("/posts/add") do
-
-#duplication of tags#
-# t = Post.find_by({tag: params["tag"]})
-# 	if t == nil
-#     tag_hash = {tag: params["tag"]}
-#     t = Tag.new(tag_hash)
-
-# this_tag = Post.find_by({tag: params["tag"]})
-# tag_id = this_tag[:id]
-
 	erb(:posts_add, {locals: {authors: Author.all() } })
 end
 # end
-
-
 
 #view specific post with id
 get("/posts/:id") do
@@ -116,8 +107,13 @@ end
 ############################################################
 #TAG
 
-
 post("/tags") do
+	tags_hash = {
+		tag: params["tag"],
+	}
+
+	all_tags = Tag.create(tags_hash)
+	all_tags.save
 	erb(:tags, { locals: { tag: Tag.all(), posts: Post.all() } })
 end
 
@@ -125,48 +121,41 @@ get("/tags") do
 	erb(:tags, { locals: { tag: Tag.all(), posts: Post.all() } })
 end
 
+get("/tags/add") do
+	erb(:tags_add, { locals: { tag: Tag.all(), posts: Post.all() } })
+end
+
 get("/tags/:id") do
-	# tag = Tag.find_by("id", params[:id])
-
-	# erb(:tags, { locals: { tag: tag, posts: Post.all() } })
-	erb(:tag, { locals: { tag: Tag.all(), posts: Post.all() } })
+	tag = Tag.find_by({id: params[:id]})
+	post = Post.where({tag_id: params[:id]})
+	erb(:tag, { locals: { tag: Tag.all(), post: post, posts: Post.all() } })
 end
 
 ############################################################
-#SUBSCRIBE
-post '/subscribe_text' do
-	number_hash = {
-		first_name: params["first_name"],
-		last_name: params["last_name"],
-		email: params["email"],
-  		phone_number: params["phone_number"]
-  	}
-  s = Subscribe.new(number_hash)
-  s.save
-	erb(:subscribe)	
-redirect '/feed'
+# SUBSCRIBERS/CONFIRMATION PAGE
+
+#WAITING FOR THE API KEY FROM SENDGRID#
+
+get ("/subscribe") do ##working
+	erb (:subscribe)
 end
 
-get("/subscribe_text") do
-	erb(:subscribe)	
-end
-############################################################
-# TWILIO MESSAGING
+# # Captures new subscriber data into hash, sends user back to confirmation page
 
-# account_sid = 'AC162b4ab94b6b6e6022465ae7bc35785e'
-# auth_token = 'c7a0e35f4bd45b8ff1aa3e400c368493'
-# # set up a client to talk to the Twilio REST API
-# @client = Twilio::REST::Client.new account_sid, auth_token
+# post("/subscribers") do
+# 	subscribers_hash = {
+# 		name: params["name"],
+# 		email: params["email"]
+# 	}
 
+# 	all_subscribers = Subscriber.create(subscribers_hash)
+# 	all_subscribers.save
 
-# Subscribe.all().each do |x|
-# @client.account.messages.create({
-# 	:from => '+19732334163', 
-# 	:to => x[:phone_number], 
-#     :body => " "
-#   })
+# 	redirect "/confirmation"
 # end
 
-############################################################
+# get ("/confirmation") do ##working
+# 	erb(:"subscribers_confirmation")
+# end
 
 

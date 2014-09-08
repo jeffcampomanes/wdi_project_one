@@ -15,24 +15,13 @@
 		<li> <a href="/tags"> Search by tag</a> </li>
 		<li> <a href="/"> Home Page </a> </li>
 	</ul>
+
+	<h3> Add a hashtag: </h3>
 </header>
-<body>
-
-<h3> Search posts by tags: </h3> 	
-<div class="add_button">
-		<a href="/tags/add">
-		<button> Add hastag </button>
-		</a>
-
-	<% posts.each do |x| %>
-	<ul>
-		<li>
-<!-- <a href="/posts/<%= x["id"] %>"> <b> TAGS: </b> <i> <%= x["tag"] %> </i> 
- -->
- 		<a href="/tags/<%= x["id"] %>"> #<%= x["tag"] %></a>
-
-		</li>
-	</ul>
-		<% end %>
+<body> 
+	<form action="/tags" method="POST">
+			<input type="text" name="tag" placeholder="Add a Tag"/>
+			<button>Add</button>
+	</form>
 </body>
 </html>
