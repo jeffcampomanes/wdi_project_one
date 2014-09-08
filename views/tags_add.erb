@@ -23,5 +23,14 @@
 			<input type="text" name="tag" placeholder="Add a Tag"/>
 			<button>Add</button>
 	</form>
+	
+	<h3> Tags in Use: </h3>
+		<% posts.each do |x| %>
+	<ul>
+		<li>
+ 		<a href="/tags/<%= x["id"] %>"> #<%= x["tag"] %></a>
+		</li>
+	</ul>
+		<% end %>
 </body>
 </html>

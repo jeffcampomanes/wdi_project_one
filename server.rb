@@ -131,6 +131,31 @@ get("/tags/:id") do
 	erb(:tag, { locals: { tag: Tag.all(), post: post, posts: Post.all() } })
 end
 
+# Edit tag form
+get("/tags/:id/edit") do
+	tag = Tag.find_by({id: params[:id]})
+	erb(:tags_edit, { locals: { tag: tag } })
+end
+
+# Captures edited tag name and sends user to list of tags
+put("/tags/:id") do
+	tags_hash = {
+		tag: params["tag"],
+	}
+
+	all_tags = Tag.create(tags_hash)
+	all_tags.save
+	erb(:tags, { locals: { tag: Tag.all(), posts: Post.all() } })
+end	
+
+# Deletes tag and redirects user to list of tags
+delete ("/tags/:id") do
+	tag = Tag.find_by({id: params[:id]})
+	tag.destroy
+
+	redirect "/tags"
+end
+
 ############################################################
 # SUBSCRIBERS/CONFIRMATION PAGE
 
