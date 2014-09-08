@@ -17,14 +17,14 @@
 		<li> <a href="/"> Home Page </a> </li>
 	</ul>
 
-	<h3> Tags</h3>
+	<h3> Tag</h3>
 </header>
-<body>
-
-      <% posts.each do |post| %>
-        	<a href="/posts/<%= post.id %>"><%= post.title %></a>
-             <a href="/tags/<%= post.tag %>/posts"> <%= post.tag %></a>
-                <% end %>
-
+<body> 
+	<!-- shows posts under hashtag  -->
+      <% posts.each do |x| %>
+	<ul>
+        <li> <a href="/posts/<%= x.id %>"><%= x.title %> </a> </li>
+    </ul>
+        <% end %>
 </body>
 </html>

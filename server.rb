@@ -85,17 +85,18 @@ end
 #add post content via form
 get("/posts/add") do
 
-# t = Tag.find_by({tag: params["tag"]})
+#duplication of tags#
+# t = Post.find_by({tag: params["tag"]})
 # 	if t == nil
 #     tag_hash = {tag: params["tag"]}
 #     t = Tag.new(tag_hash)
-# binding.pry
 
-# this_tag = Tag.find_by({tag: params["tag"]})
+# this_tag = Post.find_by({tag: params["tag"]})
 # tag_id = this_tag[:id]
 
 	erb(:posts_add, {locals: {authors: Author.all() } })
 end
+# end
 
 
 
@@ -114,6 +115,7 @@ get("/feed") do
 end
 ############################################################
 #TAG
+
 
 post("/tags") do
 	erb(:tags, { locals: { tag: Tag.all(), posts: Post.all() } })
