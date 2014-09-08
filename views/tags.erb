@@ -22,7 +22,11 @@
 	<% posts.each do |x| %>
 	<ul>
 		<li>
-			<a href="/posts/<%= x["id"] %>"> <b> TAGS: </b> <i> <%= x["tag"] %> </i> </a>
+<!-- <a href="/posts/<%= x["id"] %>"> <b> TAGS: </b> <i> <%= x["tag"] %> </i> 
+ -->
+ 		<a href="/tags/<%= x["id"] %>"> TAGS: <%= x["tag"] %></a>
+
+
 		</li>
 	</ul>
 		<% end %>

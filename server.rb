@@ -8,6 +8,7 @@ require './model/author.rb'
 require './model/post.rb'
 require './model/snippet.rb'
 require './model/tag.rb'
+require './model/subscribe.rb'
 require 'rubygems' 
 require 'twilio-ruby'
 ############################################################
@@ -52,21 +53,24 @@ end
 #view specific author with id
 get("/authors/:id") do 
 	author = Author.find_by({id: params[:id]})
-	post = Post.find_by({id: params[:id]})
-	erb(:author, {locals: {author: author, posts: Post.all()} })
+	post = Post.where({author_id: params[:id]})
+	# tag = Tag.find_by({id: post.tag_id})
+	erb(:author, {locals: {author: author, posts: Post.all(), tags: Tag.all()} })
 end
 
 ############################################################
 #POSTS
 
 #adding posts to server
+
 post("/posts") do 
 	post_hash = {
 		title: params["title"],
 		post_date: params["post_date"],
 		post: params["post"],
 		author_id: params["author_id"],
-		tag: params["tag"],
+		tag_id: params["tag_id"],
+		tag: params["tag"]
 	}
 	p = Post.new(post_hash)
 	p.save
@@ -80,8 +84,20 @@ end
 
 #add post content via form
 get("/posts/add") do
+
+# t = Tag.find_by({tag: params["tag"]})
+# 	if t == nil
+#     tag_hash = {tag: params["tag"]}
+#     t = Tag.new(tag_hash)
+# binding.pry
+
+# this_tag = Tag.find_by({tag: params["tag"]})
+# tag_id = this_tag[:id]
+
 	erb(:posts_add, {locals: {authors: Author.all() } })
 end
+
+
 
 #view specific post with id
 get("/posts/:id") do
@@ -100,7 +116,6 @@ end
 #TAG
 
 post("/tags") do
-	
 	erb(:tags, { locals: { tag: Tag.all(), posts: Post.all() } })
 end
 
@@ -108,23 +123,48 @@ get("/tags") do
 	erb(:tags, { locals: { tag: Tag.all(), posts: Post.all() } })
 end
 
-get("/tags/:id/posts") do
-	tag = Tag.find_by("id", params[:id])
+get("/tags/:id") do
+	# tag = Tag.find_by("id", params[:id])
 
-	erb(:tags, { locals: { tag: tag, posts: Post.all() } })
+	# erb(:tags, { locals: { tag: tag, posts: Post.all() } })
+	erb(:tag, { locals: { tag: Tag.all(), posts: Post.all() } })
+end
+
+############################################################
+#SUBSCRIBE
+post '/subscribe_text' do
+	number_hash = {
+		first_name: params["first_name"],
+		last_name: params["last_name"],
+		email: params["email"],
+  		phone_number: params["phone_number"]
+  	}
+  s = Subscribe.new(number_hash)
+  s.save
+	erb(:subscribe)	
+redirect '/feed'
+end
+
+get("/subscribe_text") do
+	erb(:subscribe)	
 end
 ############################################################
 # TWILIO MESSAGING
 
 # account_sid = 'AC162b4ab94b6b6e6022465ae7bc35785e'
 # auth_token = 'c7a0e35f4bd45b8ff1aa3e400c368493'
-
 # # set up a client to talk to the Twilio REST API
 # @client = Twilio::REST::Client.new account_sid, auth_token
 
-# @client.account.messages.create(
+
+# Subscribe.all().each do |x|
+# @client.account.messages.create({
 # 	:from => '+19732334163', 
-# 	:to => '+18625967865', 
-# 	:body => 'Hey there!'
-# 	)
+# 	:to => x[:phone_number], 
+#     :body => " "
+#   })
+# end
+
+############################################################
+
 

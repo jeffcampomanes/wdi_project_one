@@ -3,6 +3,7 @@ CREATE DATABASE blog;
 CREATE TABLE posts(
 id serial primary key,
 author_id integer,
+tag_id integer,
 title varchar(255),
 post_date date,
 post text,
@@ -27,3 +28,10 @@ post_id integer,
 tag varchar(255)
 );
 
+CREATE TABLE subscribes(
+id serial primary key,
+first_name varchar(255),
+last_name varchar(255),
+email varchar(255),
+phone_number integer
+);

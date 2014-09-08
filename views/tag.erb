@@ -21,13 +21,10 @@
 </header>
 <body>
 
-	<ul>
-		<li>
-			<b> TAGS: </b> <i> <%= x["tag"] %> </i> </a>
-		</li>
-	</ul>
-		<% end %>
-
+      <% posts.each do |post| %>
+        	<a href="/posts/<%= post.id %>"><%= post.title %></a>
+             <a href="/tags/<%= post.tag %>/posts"> <%= post.tag %></a>
+                <% end %>
 
 </body>
 </html>
