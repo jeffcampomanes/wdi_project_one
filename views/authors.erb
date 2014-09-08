@@ -15,8 +15,10 @@
 		<li> <a href="/tags"> Search by tag</a> </li>
 		<li> <a href="/"> Home Page </a> </li>
 	</ul>
+	
 	<u> <a href="/authors/add"> Click here to become an author! </a> </u>
 	<br>
+	
 	<h3> Our contributing authors: </h3>
 
 </header>
@@ -26,7 +28,7 @@
 	<% authors.each do |x| %>
 	<ul>
 		<li>
-			<a href="/authors/<%= x["id"] %>"> <%= x["username"] %> </a>
+			<a href="/authors/<%= x["id"]%>"> <%= x["username"] %> </a>
 		</li>
 	</ul>
 		<% end %>

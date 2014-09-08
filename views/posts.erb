@@ -26,9 +26,10 @@
 	<% posts.each do |x| %>
 	<ul>
 		<li>
-			<a href="/posts/<%= x["id"] %>"> "<%= x["title"] %>" 
+			<a href="/posts/<%= x["id"] %>"> 
+			"<%= x["title"] %>" 
 			<br> 
-			<b> Posted on: </b> <%= x["post_date"] %>
+			<i> Date: </i> <%= x["post_date"] %>
 			<br>
 			<b> #</b> <i> <%= x["tag"] %> </i> </a>
 		</li>

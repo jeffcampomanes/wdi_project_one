@@ -19,12 +19,14 @@
 
 	<h3> Searched by #<%= posts[0].tag %> </h3>
 </header>
+
 <body> 
+	
 	<!-- shows posts under hashtag  -->
       <% posts.each do |x| %>
 	<ul>
         <li> <a href="/posts/<%= x.id %>"><%= x.title %> </a> </li>
     </ul>
-        <% end %>
+      <% end %>
 </body>
 </html>

@@ -74,9 +74,9 @@ post("/posts") do
 	p.save
 
 # SendGrid info here
-		subscribers = Subscriber.all()
-		title = posts_hash[:title]  
-		subscribe(subscribers, title)
+		# subscribers = Subscriber.all()
+		# title = posts_hash[:title]  
+		# subscribe(subscribers, title)
 	erb(:posts, {locals: {posts: Post.all()} })
 end
 
