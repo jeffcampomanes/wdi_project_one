@@ -17,15 +17,15 @@
 		<li> <a href="/"> Home Page </a> </li>
 	</ul>
 
-	<h3> Searched by #<%= posts[0].tag %> </h3>
+	<h3> Results: </h3>
 </header>
 
 <body> 
 	
 	<!-- shows posts under hashtag  -->
-      <% posts.each do |x| %>
+      <% tag.each do |x| %>
 	<ul>
-        <li> <a href="/posts/<%= x.id %>"><%= x.title %> </a> </li>
+        <li> <a href="/tags/<%= x.id %>"><%= x.tag %> </a> </li>
     </ul>
       <% end %>
 </body>

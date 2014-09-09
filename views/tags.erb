@@ -19,25 +19,21 @@
 </header>
 <body>
 
-<h3> Search posts by tags used: </h3> 	
+<h3> Current tags in use: </h3> 	
 
 	<% posts.each do |x| %>
 	<ul>
 		<li>
-<!-- <a href="/posts/<%= x["id"] %>"> <b> TAGS: </b> <i> <%= x["tag"] %> </i> 
- -->
- 		<a href="/tags/<%= x["id"] %>"> #<%= x["tag"] %></a>
-
+ 			<a href="/posts/<%= x["id"] %>"> #<%= x["tag"] %></a>
 		</li>
 	</ul>
 		<% end %>
 		
 	<div class="add_button">
 		<a href="/tags/add">
-		<button> +hashtag </button>
-		</a>
-		<a href="/tags/:id/edit">
-		<button> -hashtag </button>
+			<button> +hashtag </button>
+				<a href="/tags/:id/edit">
+					<button> -hashtag </button>
 	</div>
 
 </body>
