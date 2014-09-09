@@ -11,9 +11,9 @@
 
 	<ul>
 		<li> <a href="/authors"> Authors</a> </li>
-		<li> <a href="/posts"> Posts </a> </li>
-		<li> <a href="/tags"> Search by tag</a> </li>
-		<li> <a href="/"> Home Page </a> </li>
+			<li> <a href="/posts"> Posts </a> </li>
+				<li> <a href="/tags"> Search by tag</a> </li>
+					<li> <a href="/"> Home Page </a> </li>
 	</ul>
 
 	<h3> Add a hashtag: </h3>
@@ -21,16 +21,16 @@
 <body> 
 	<form action="/tags" method="POST">
 			<input type="text" name="tag" placeholder="Add a Tag"/>
-			<button>Add</button>
+				<button>Add</button>
 	</form>
 	
 	<h3> All Active/Inactive Tags: </h3>
-		<% tags.each do |x| %>
+			<% tags.each do |x| %>
 	<ul>
 		<li>
  			<a href="/tags/<%= x["id"] %>"> #<%= x["tag"] %></a>
 		</li>
 	</ul>
-		<% end %>
+	<% end %>
 </body>
 </html>

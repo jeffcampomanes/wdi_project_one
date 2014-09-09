@@ -10,9 +10,9 @@
 
 	<ul>
 		<li> <a href="/authors"> Authors</a> </li>
-		<li> <a href="/posts"> Posts </a> </li>
-		<li> <a href="/tags"> Search by tag</a> </li>
-		<li> <a href="/"> Home Page </a> </li>
+			<li> <a href="/posts"> Posts </a> </li>
+				<li> <a href="/tags"> Search by tag</a> </li>
+					<li> <a href="/"> Home Page </a> </li>
 	</ul>
 
 </header>
@@ -25,12 +25,11 @@
 	<ul>
 		<li>
 			<a href="/posts/<%= x["id"] %>"> "<%= x["title"]%>" 
-				<br> <b> Posted on: </b> <%= x["post_date"] %> </a>
+				<br> 
+					<b> Posted on: </b> <%= x["post_date"] %> </a>
 		</li>
 	</ul>
 	<% end %>
-
-	
 
 </body>
 </html>

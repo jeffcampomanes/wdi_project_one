@@ -11,10 +11,9 @@
 
 	<ul>
 		<li> <a href="/authors"> Authors</a> </li>
-		<li> <a href="/posts"> Posts </a> </li>
-		<li> <a href="/tags"> Search by tag</a> </li>
-		<li> <a href="/"> Home Page </a> </li>
-
+			<li> <a href="/posts"> Posts </a> </li>
+				<li> <a href="/tags"> Search by tag</a> </li>
+					<li> <a href="/"> Home Page </a> </li>
 	</ul>
 
 	<h3> Posts: </h3>
@@ -25,14 +24,14 @@
 	<ul>
 		<li>
 			<a href="/posts/<%= x["id"] %>"> 
-			"<%= x["title"] %>" 
-			<br> 
-			<i> Date: </i> <%= x["post_date"] %>
-			<br>
-			<b> #</b> <i> <%= x["tag"] %> </i> </a>
+				"<%= x["title"] %>" 
+					<br> 
+						<i> Date: </i> <%= x["post_date"] %>
+							<br>
+								<b> #</b> <i> <%= x["tag"] %> </i> </a>
 		</li>
 	</ul>
-		<% end %>
+	<% end %>
 
 	<div class="add_button">
 		<a href="/posts/add">

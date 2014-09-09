@@ -11,9 +11,9 @@
 
 	<ul>
 		<li> <a href="/authors"> Authors</a> </li>
-		<li> <a href="/posts"> Posts </a> </li>
-		<li> <a href="/tags"> Search by tag</a> </li>
-		<li> <a href="/"> Home Page </a> </li>
+			<li> <a href="/posts"> Posts </a> </li>
+				<li> <a href="/tags"> Search by tag</a> </li>
+					<li> <a href="/"> Home Page </a> </li>
 	</ul>
 
 	<h3> Our contributing authors: </h3>
@@ -23,16 +23,16 @@
 	<div class="authors">
 		<% authors.each do |x| %>
 		<ul>
-		<li>
-			<a href="/authors/<%= x["id"]%>"> <%= x["username"] %> </a>
-		</li>
+			<li>
+				<a href="/authors/<%= x["id"]%>"> <%= x["username"] %> </a>
+			</li>
 		</ul>
 		<% end %>
 	</div>
 
 	<div class="add_button">
 		<a href="/authors/add">
-		<button> +author </button>
+			<button> +author </button>
 	</div>
 </body>
 </html>

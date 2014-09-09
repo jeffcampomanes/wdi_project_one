@@ -80,12 +80,12 @@ post("/posts") do
 		tag_id: params["tag_id"],
 		tag: params["tag"]
 	}
-	p = Post.new(post_hash)
-	p.save
+	post = Post.new(post_hash)
+	post.save
 
 #SendGrid info here
 		subscribers = Subscriber.all()
-		title = posts_hash[:title]  
+		title = post_hash[:title]  
 		subscribe(subscribers, title)
 	erb(:posts, {locals: {posts: Post.all()} })
 end
@@ -104,7 +104,7 @@ get("/posts/:id/edit") do
 	erb(:posts_edit, {locals: {post: post, posts: Post.all(), authors: Author.all()} })
 end
 
-put("/posts/:id/edit") do 
+put("/posts/:id") do 
 	post_hash = {
 		title: params["title"],
 		post_date: params["post_date"],
@@ -113,9 +113,10 @@ put("/posts/:id/edit") do
 		tag_id: params["tag_id"],
 		tag: params["tag"]
 	}
-	p = Post.find_by({id: params[:id]})
-	p.update(post_hash)
-
+	post = Post.find_by({id: params[:id]})
+	post.update(post_hash)
+	author = Author.find_by({id: post.author_id})
+	tag = Tag.find_by(id: params[:id])
 	erb(:post, { locals: { post: post, author: author} })
 end
 

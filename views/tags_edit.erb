@@ -11,9 +11,9 @@
 
 	<ul>
 		<li> <a href="/authors"> Authors</a> </li>
-		<li> <a href="/posts"> Posts </a> </li>
-		<li> <a href="/tags"> Search by tag</a> </li>
-		<li> <a href="/"> Home Page </a> </li>
+			<li> <a href="/posts"> Posts </a> </li>
+				<li> <a href="/tags"> Search by tag</a> </li>
+					<li> <a href="/"> Home Page </a> </li>
 	</ul>
 
 	<h3> Edit a hashtag: </h3>
@@ -22,13 +22,13 @@
 
 	<form action="/tags/<%= tag.id %>" method="POST">
 		<input type="hidden" name="_method" value="PUT">
-		<input type="text" name="tag" placeholder="Tag" value="<%= tag.tag %>" >
-		<button>Save</button>
+			<input type="text" name="tag" placeholder="Tag" value="<%= tag.tag %>" >
+				<button>Save</button>
 	</form>
 
 	<form action="/tags/<%= tag.id %>" method="POST">
 		<input type="hidden" name="_method" value="DELETE">
-		<button>Delete</button>
+			<button>Delete</button>
 	</form>
 
 	</body>
