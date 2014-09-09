@@ -10,16 +10,16 @@
 	<link href='http://fonts.googleapis.com/css?family=Cinzel:700' rel='stylesheet' type='text/css'>
 
 	<ul>
-		<li> <a href="/authors"> Authors</a> </li>
-			<li> <a href="/posts"> Posts </a> </li>
-				<li> <a href="/tags"> Search by tag</a> </li>
+			<li> <a href="/authors"> Authors</a> </li>
+			<li> <a href="/posts"> + / - Posts </a> </li>
+				<li> <a href="/tags"> + / - Tags </a> </li>
 					<li> <a href="/"> Home Page </a> </li>
 	</ul>
 
 </header>
 <body>
 
-<h3> Current tags in use: </h3> 	
+<h3> Click a tag to read related post: </h3> 	
 
 	<% posts.each do |x| %>
 	<ul>
@@ -32,8 +32,8 @@
 	<div class="add_button">
 		<a href="/tags/add">
 			<button> +hashtag </button>
-				<a href="/tags/:id/edit">
-					<button> -hashtag </button>
+			<!-- 	<a href="/tags/:id/edit">
+					<button> -hashtag </button> -->
 	</div>
 
 </body>

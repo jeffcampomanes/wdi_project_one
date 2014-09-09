@@ -48,6 +48,12 @@ body {
 form {
 	text-align: center;
 }
+#blog{
+	text-align: justify;
+}
+#info{
+	text-align: justify;
+}
 .add_button{
 	text-align: right;
 }

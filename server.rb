@@ -133,6 +133,7 @@ end
 get("/feed") do
 	erb(:feed, {locals: {posts: Post.all()} })
 end
+
 ############################################################
 #TAG
 
@@ -154,28 +155,29 @@ post("/tags") do
 	all_tags = Tag.create(tag_hash)
 	all_tags.save
 	erb(:tags, { locals: { tag: Tag.all(), posts: Post.all() } })
+
+redirect "/posts/add"
 end
 
-get("/tags/:id") do 
+get("/tags/:id/posts") do 
 	tag = Tag.find_by({id: params[:id]})
 	post = Post.where({tag_id: params[:id]})
 	erb(:tag, { locals: { tag: Tag.all(), post: post, posts: Post.all() } })
 end
 
-# Edit tag form
 get("/tags/:id/edit") do 
 	tag = Tag.find_by({id: params[:id]})
 	erb(:tags_edit, { locals: { tag: tag } })
 end
 
-put("/tags/:id") do #show
+put("/tags/:id") do 
 	tag_hash = {
 		tag: params["tag"],
 	}
 
 	all_tag = Tag.create(tag_hash)
 	all_tags.save
-	erb(:tags, { locals: { tag: Tag.all(), posts: Post.all() } })
+	erb(:tags, { locals: { tag: tag, tags: Tag.all(), posts: Post.all() } })
 end	
 
 delete ("/tags/:id") do

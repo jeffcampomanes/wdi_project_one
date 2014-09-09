@@ -12,8 +12,8 @@
 
 	<ul>
 		<li> <a href="/authors"> Authors</a> </li>
-			<li> <a href="/posts"> Posts </a> </li>
-				<li> <a href="/tags"> Search by tag</a> </li>
+			<li> <a href="/posts"> + / - Posts </a> </li>
+				<li> <a href="/tags"> + / - Tags </a> </li>
 					<li> <a href="/"> Home Page </a> </li>
 	</ul>
 
@@ -22,7 +22,6 @@
 
 <body> 
 	
-	<!-- shows posts under hashtag  -->
       <% tag.each do |x| %>
 	<ul>
         <li> <a href="/tags/<%= x.id %>"><%= x.tag %> </a> </li>
