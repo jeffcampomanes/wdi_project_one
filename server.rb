@@ -67,7 +67,7 @@ end
 
 #add post content via form
 get("/posts/add") do #NEW
-	erb(:posts_add, {locals: {posts: Post.all(), authors: Author.all() } })
+	erb(:posts_add, {locals: {posts: Post.all(), authors: Author.all(), tags: Tag.all() } })
 end
 
 #adding posts to server
@@ -81,7 +81,6 @@ post("/posts") do  #NEW
 		tag: params["tag"]
 	}
 	p = Post.new(post_hash)
-binding.pry
 	p.save
 
 # SendGrid info here
@@ -142,8 +141,9 @@ end
 
 
 get("/tags/add") do #new tags
-	erb(:tags_add, { locals: { tag: Tag.all(), posts: Post.all() } })
+	erb(:tags_add, { locals: { tags: Tag.all(), posts: Post.all() } })
 end
+
 
 post("/tags") do #index
 	tags_hash = {

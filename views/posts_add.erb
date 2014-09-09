@@ -39,7 +39,7 @@
 	
 	<select name="tag">
 		<option selected="selected">Select tag or +hashtag</option>
-    	<% posts.each do |x| %>
+    	<% tags.each do |x| %>
         	<option value="<%= x["tag"] %>"><%= x["tag"] %>
         	</option>
       	<% end %>
