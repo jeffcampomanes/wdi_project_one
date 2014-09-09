@@ -15,25 +15,24 @@
 		<li> <a href="/tags"> Search by tag</a> </li>
 		<li> <a href="/"> Home Page </a> </li>
 	</ul>
-	
+
+	<h3> Our contributing authors: </h3>
+</header>
+
+<body>
+	<div class="authors">
+		<% authors.each do |x| %>
+		<ul>
+		<li>
+			<a href="/authors/<%= x["id"]%>"> <%= x["username"] %> </a>
+		</li>
+		</ul>
+		<% end %>
+	</div>
+
 	<div class="add_button">
 		<a href="/authors/add">
 		<button> +author </button>
 	</div>
-
-	<h3> Our contributing authors: </h3>
-
-</header>
-
-<body>
-<div class="authors">
-	<% authors.each do |x| %>
-	<ul>
-		<li>
-			<a href="/authors/<%= x["id"]%>"> <%= x["username"] %> </a>
-		</li>
-	</ul>
-		<% end %>
-</div>
 </body>
 </html>

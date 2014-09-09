@@ -10,6 +10,7 @@
 	<link rel="stylesheet" href="/style.css">
 	<link href='http://fonts.googleapis.com/css?family=Cinzel:700' rel='stylesheet' type='text/css'>
 
+
 	<ul>
 		<li> <a href="/authors"> Authors</a> </li>
 		<li> <a href="/posts"> Posts </a> </li>
@@ -21,12 +22,13 @@
 
 <body>
 
-	<form action="/posts" method="POST">
+	<form action="/posts/<%= post.id %>" method="POST">
+    	<input type="hidden" name="_method" value="PUT">
+		<input type="text" name="title" placeholder="Title of Post" value="<%=post.title%>"/>
+		<input type="text" name="post_date" placeholder="XX/XX/XXXX (date)" value="<%=post.post_date%>"/>
 		<br>
-		<input type="text" name="title" placeholder="Title of Post">
-		<input type="text" name="post_date" placeholder="XX/XX/XXXX (date)">
-		<br>
-		<textarea name="post" cols="50" rows="5" placeholder="Write here!"></textarea>
+		<!-- textarea does not work to call back data to edit, only input type does. why?-->		
+ 	<textarea name="post" cols="50" rows="5" placeholder="Write here!" value="<%=post.post%>"/> </textarea>
 		<br>
 			
 	<select name="author_id">
@@ -38,7 +40,7 @@
     </select>	
 	
 	<select name="tag">
-		<option selected="selected">Select tag or +hashtag</option>
+		<option selected="selected">Select a tag</option>
     	<% posts.each do |x| %>
         	<option value="<%= x["tag"] %>"><%= x["tag"] %>
         	</option>
@@ -48,10 +50,15 @@
 	</form>
 	
 	
-	<div class="hashtag_button">
+`	<div class="add_button">
 		<a href="/tags/add">
 		<button> +hashtag </button>
 		</a>
+
+ <form action="/posts/<%= post.id %>" method="POST">
+    <input type="hidden" name="_method" value="DELETE">
+    <button>Delete Post</button>
+  </form>
 
 </body>
 </html>

@@ -49,8 +49,30 @@ form {
 	text-align: center;
 }
 .add_button{
-	text-align: center;
+	text-align: right;
 }
 .subscribe_button{
 	text-align: center;
+}
+.edit_button{
+	text-align: right;
+}
+.hashtag_button{
+	text-align: center;
+}
+button {
+  -webkit-border-radius: 15;
+  -moz-border-radius: 15;
+  border-radius: 15px;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 11px;
+  background: #0366e0;
+  padding: 3px 20px 3px 20px;
+  border: solid #000000 1px;
+  text-decoration: none;
+}
+button:hover {
+  background: #c7c7c7;
+  text-decoration: none;
 }

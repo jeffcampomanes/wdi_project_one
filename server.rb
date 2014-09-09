@@ -28,18 +28,6 @@ end
 ############################################################
 #AUTHORS
 
-#add authors to server
-post('/authors') do
-
-	author_hash = {
-		username: params["username"], 
-		email: params["email"]
-	}
-	a = Author.new(author_hash)
-	a.save
-	erb(:authors, {locals: {authors: Author.all()} })
-end
-
 #view authors on viewing page with list of authors
 get("/authors") do
 	erb(:authors, {locals: {authors: Author.all()} })	
@@ -48,6 +36,18 @@ end
 #adding authors via form
 get("/authors/add") do
 	erb(:authors_add, {locals: {authors: Author.all()} })
+end
+
+#add authors to server
+post("/authors") do
+
+	author_hash = {
+		username: params["username"], 
+		email: params["email"]
+	}
+	a = Author.new(author_hash)
+	a.save
+	erb(:authors, {locals: {authors: Author.all()} })
 end
 
 #view specific author with id
@@ -60,8 +60,18 @@ end
 ############################################################
 #POSTS
 
+#view posts on viewing page with list of posts
+get("/posts") do #INDEX
+	erb(:posts, {locals: {posts: Post.all()} })
+end
+
+#add post content via form
+get("/posts/add") do #NEW
+	erb(:posts_add, {locals: {posts: Post.all(), authors: Author.all() } })
+end
+
 #adding posts to server
-post("/posts") do 
+post("/posts") do  #NEW
 	post_hash = {
 		title: params["title"],
 		post_date: params["post_date"],
@@ -71,6 +81,7 @@ post("/posts") do
 		tag: params["tag"]
 	}
 	p = Post.new(post_hash)
+binding.pry
 	p.save
 
 # SendGrid info here
@@ -79,23 +90,41 @@ post("/posts") do
 		# subscribe(subscribers, title)
 	erb(:posts, {locals: {posts: Post.all()} })
 end
-
-#view posts on viewing page with list of posts
-get("/posts") do
-	erb(:posts, {locals: {posts: Post.all()} })
-end
-
-#add post content via form
-get("/posts/add") do
-	erb(:posts_add, {locals: {authors: Author.all() } })
-end
-# end
+#end
 
 #view specific post with id
-get("/posts/:id") do
+get("/posts/:id") do #SHOW
 	post = Post.find_by({id: params[:id]})
 	author = Author.find_by({id: post.author_id})
 	erb(:post, {locals: {post: post, author: author} })
+end
+
+get("/posts/:id/edit") do #EDIT
+	post = Post.find_by({id: params[:id]})
+	author = Author.find_by({id: post.author_id})
+	erb(:posts_edit, {locals: {post: post, posts: Post.all(), authors: Author.all()} })
+end
+
+put("/posts/:id/edit") do #SHOW
+	post_hash = {
+		title: params["title"],
+		post_date: params["post_date"],
+		post: params["post"],
+		author_id: params["author_id"],
+		tag_id: params["tag_id"],
+		tag: params["tag"]
+	}
+	p = Post.find_by({id: params[:id]})
+	p.update(post_hash)
+
+	erb(:post, { locals: { post: post, author: author} })
+end
+
+delete("/posts/:id") do
+  post = Post.find_by({id: params[:id]})
+  post.destroy
+
+  redirect "/posts" 
 end
 
 ############################################################
@@ -107,7 +136,16 @@ end
 ############################################################
 #TAG
 
-post("/tags") do
+get("/tags") do #index
+	erb(:tags, { locals: { tag: Tag.all(), posts: Post.all() } })
+end
+
+
+get("/tags/add") do #new tags
+	erb(:tags_add, { locals: { tag: Tag.all(), posts: Post.all() } })
+end
+
+post("/tags") do #index
 	tags_hash = {
 		tag: params["tag"],
 	}
@@ -117,28 +155,21 @@ post("/tags") do
 	erb(:tags, { locals: { tag: Tag.all(), posts: Post.all() } })
 end
 
-get("/tags") do
-	erb(:tags, { locals: { tag: Tag.all(), posts: Post.all() } })
-end
 
-get("/tags/add") do
-	erb(:tags_add, { locals: { tag: Tag.all(), posts: Post.all() } })
-end
-
-get("/tags/:id") do
+get("/tags/:id") do #show
 	tag = Tag.find_by({id: params[:id]})
 	post = Post.where({tag_id: params[:id]})
 	erb(:tag, { locals: { tag: Tag.all(), post: post, posts: Post.all() } })
 end
 
 # Edit tag form
-get("/tags/:id/edit") do
+get("/tags/:id/edit") do #edit
 	tag = Tag.find_by({id: params[:id]})
 	erb(:tags_edit, { locals: { tag: tag } })
 end
 
 # Captures edited tag name and sends user to list of tags
-put("/tags/:id") do
+put("/tags/:id") do #show
 	tags_hash = {
 		tag: params["tag"],
 	}
