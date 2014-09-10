@@ -1,16 +1,14 @@
-require 'pry'
-require 'sinatra'
-require 'sinatra/reloader'
-require 'httparty'
-require 'active_record'
 require './lib/connection.rb'
 require './model/author.rb'
 require './model/post.rb'
 require './model/snippet.rb'
 require './model/tag.rb'
 require './model/subcriber.rb'
-require 'rubygems' 
-require 'twilio-ruby'
+
+require 'rubygems'
+require 'bundler/setup'
+Bundler.require(:default)
+
 ############################################################
 #ACTIVE RECORD
 
@@ -208,5 +206,3 @@ end
 get ("/confirmation") do 
 	erb(:"subscribers_confirmation")
 end
-
-
